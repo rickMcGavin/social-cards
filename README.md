@@ -14,3 +14,6 @@ In the spirit of Dave Ceddia's blog post [6 Fun React Projects You Can Build Tod
 - [ ] Handle loading state with an animated loading icon.
 - [ ] Allow User to control how many profiles can be requested
 - [ ] Add email and phone icons, replacing the words email and phone
+
+
+_Made with [create-react-app](https://github.com/facebook/create-react-app)_
