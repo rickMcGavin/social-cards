@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "./card";
+import Loader from './loader';
 import axios from "axios";
 import { capitalizeFirst } from '../functions';
 
@@ -7,7 +8,10 @@ export default class Container extends Component {
   state = { loading: true };
 
   componentDidMount() {
-    const url = "https://randomuser.me/api/?results=6";
+    const baseUrl = 'https://randomuser.me/api/';
+    const nationalities = 'au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,tr,us';
+    const results = '6'
+    const url = `${baseUrl}?results=${results}&nat=${nationalities}`;
     axios
       .get(url)
       .then(res => {
@@ -43,7 +47,7 @@ export default class Container extends Component {
         );
       });
     } else if (this.state.loading) {
-      return <div>loading</div>;
+        return <Loader />;
     }
   }
 }
