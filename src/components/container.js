@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "./card";
 import axios from "axios";
+import { capitalizeFirst } from '../functions';
 
 export default class Container extends Component {
   state = { loading: true };
@@ -27,11 +28,13 @@ export default class Container extends Component {
         const img = user.picture.medium;
         const { username } = user.login;
         const { first, last } = user.name;
+        const firstName = capitalizeFirst(first);
+        const lastName = capitalizeFirst(last);
         return (
           <Card
             key={i}
-            first={first}
-            last={last}
+            first={firstName}
+            last={lastName}
             img={img}
             email={email}
             phone={phone}
