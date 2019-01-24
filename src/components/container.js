@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Card from "./card";
-import Loader from './loader';
+import CardsView from './cardsView';
 import axios from "axios";
-import { capitalizeFirst } from '../functions';
 
 export default class Container extends Component {
   state = { loading: true };
@@ -21,33 +19,11 @@ export default class Container extends Component {
         this.setState({ loading: false, users: data });
       })
       .catch(error => {
-        console.log(error);
+        this.setState({ error: true, loading: false })
       });
   }
 
   render() {
-    if (!this.state.loading) {
-      return this.state.users.map((user, i) => {
-        const { email, phone } = user;
-        const img = user.picture.medium;
-        const { username } = user.login;
-        const { first, last } = user.name;
-        const firstName = capitalizeFirst(first);
-        const lastName = capitalizeFirst(last);
-        return (
-          <Card
-            key={i}
-            first={firstName}
-            last={lastName}
-            img={img}
-            email={email}
-            phone={phone}
-            username={username}
-          />
-        );
-      });
-    } else if (this.state.loading) {
-        return <Loader />;
-    }
+    return <CardsView {...this.state} />
   }
 }
